@@ -442,6 +442,18 @@ ExperimentN class >> initialize [
 	DevelopmentMode := false
 ]
 
+{ #category : #'as yet unclassified' }
+ExperimentN class >> startIt [
+
+	Metacello new
+		baseline: 'ClassBlueprintScenarios';
+		repository:
+			'github://NourDjihan/ClassBlueprintExperimentScenarios/src';
+		load.
+	ExperimentN buildExperiment.
+	PhexTaskLauncherPresenter open loadExperience: ExperimentN
+]
+
 { #category : #'building - sources' }
 ExperimentN class >> task1Source [
 ^'# Task 1
