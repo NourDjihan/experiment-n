@@ -31,7 +31,7 @@ ExperimentLoggerDSSpy >> dsSpyClass [
 	
 	"Can be probalby properly fixed by adding DSSpy as a dependency of the baseline"
 
-	^ self class environment at: #DSSpy
+	^ self class environment at: #DSSpy ifAbsent: [ nil ]
 ]
 
 { #category : #logging }
@@ -96,6 +96,7 @@ ExperimentLoggerDSSpy >> surveyClosed: aSurvey [
 
 	| dsSpyClass |
 	dsSpyClass := self dsSpyClass.
+	dsSpyClass ifNil: [ ^ self ].
 	dsSpyClass closeSurvey: aSurvey
 ]
 
@@ -106,6 +107,7 @@ ExperimentLoggerDSSpy >> taskFinished: aTask [
 
 	| dsSpyClass |
 	dsSpyClass := self dsSpyClass.
+	dsSpyClass ifNil: [ ^ self ].
 	dsSpyClass endTask: aTask
 ]
 
@@ -116,5 +118,6 @@ ExperimentLoggerDSSpy >> taskStarted: aTask [
 
 	| dsSpyClass |
 	dsSpyClass := self dsSpyClass.
+	dsSpyClass ifNil: [ ^ self ].
 	dsSpyClass startTask: aTask
 ]
