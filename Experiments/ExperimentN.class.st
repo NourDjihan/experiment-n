@@ -137,7 +137,7 @@ ExperimentN class >> buildExperimentSurveys [
 
 	| svs |
 	svs := OrderedCollection new.
-	svs add: self buildIntroSurvey.
+	"svs add: self buildIntroSurvey."
 	svs add: self buildDemographicSurvey.
 	svs add: self buildPostExperimentSurvey.
 	svs add: self buildContactAndCommentSurvey.
