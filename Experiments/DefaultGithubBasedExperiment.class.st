@@ -75,10 +75,10 @@ DefaultGithubBasedExperiment >> ensureUpstream [
 DefaultGithubBasedExperiment >> iceRepository [
 
 	| projectName |
-	projectName := 'XPImageGeneration' "The project name of your fork of XPImageGeneration (in case of rename)".
+	projectName := 'experiment-n' "The project name of your fork of XPImageGeneration (in case of rename)".
 	^ IceRepository repositories detect: [ :d | 
 		  d location notNil and: [ 
-			  d origin projectName = 'XPImageGeneration' ] ]
+			  d origin projectName = 'experiment-n' ] ]
 ]
 
 { #category : #initialization }

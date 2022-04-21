@@ -61,22 +61,22 @@ ExperimentLoggerDSSpy >> experimentLoaded: anExperiment [
 	"Called by the framework when an Experiment has been loaded (After systemPreparation phase and also after materializing the tasks from ptx files"
 
 	| dsSpyClass dsSpyInstrumentationClass |
-	dsSpyClass := self dsSpyClass.
+	"dsSpyClass := self dsSpyClass.
 	dsSpyInstrumentationClass := self dsSpyInstrumenterClass.
 	dsSpyClass logOnlyWhenTaskStarted: true.
-	dsSpyInstrumentationClass instrumentSystem
+	dsSpyInstrumentationClass instrumentSystem"
 ]
 
 { #category : #initialization }
 ExperimentLoggerDSSpy >> initialize [
 	|concreteLogger|
-	super initialize.
+	super initialize."
 	concreteLogger := DSEventRecorderLogger new.
 	concreteLogger setExperiment: experiment.
 	concreteLogger projectName: experiment experienceId.
 	concreteLogger participantUUID: experiment generateParticipantUUID.
 	DSSpy logger: concreteLogger.
-	DSSpy monitorPackageForSourceCodeChanges: {'OCD-Tasks'. 'Reflectivity' } 
+	DSSpy monitorPackageForSourceCodeChanges: {'OCD-Tasks'. 'Reflectivity' } "
 	
 	
 ]
