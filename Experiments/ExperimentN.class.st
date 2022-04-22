@@ -472,104 +472,25 @@ Microdown description of the task here
 ExperimentN class >> tutorialTaskSource [
 ^'
 # Tutorial
-## Context: the OCDBox objects loop
-In this example, we will use a class named `OCDBox`. It models a trivial object named box that holds objects. It has two instance variables, elements and name, and a few methods in its API. In particular, the method `OCDBox>>#addElement:`  (click on it) adds an object into the box.
+## This is an example on how to use Microdown
+Your tasks description should be written like this. Microdown supports browsable links such as the following `OrderedCollection`. You can also specify methods like this `OrderedCollection>>#add:`  (click on it).
 
-We will use a test to practice object-centric breakpoints. In this test, we instantiate 100 boxes. We iterate over all these boxes to:
+Lists are written like this:
 
-* add an object to each box,
- *  print the box on the Transcript.
+* An item.
+ *  A sub item.
+* Another item.
+* Etc.
 
-Open the transcript (Browse > Transcript) then execute this test: `OCDBoxTest>>#testMultipleBoxes`.
-The transcript shows you each box that is printed in the iteration loop. 
-If you look at the code of the OCDBox class, you will see that:
+## Embedding Images
 
-* adding an element (`OCDBox>>#addElement:` )  to a box modifies its name,
- *  the printing method (`OCDBox>>#printString` ) uses the name to display the box in the Transcript.
+You can also embed images like this (requires internet connection):
 
-## Tutorial: Breaking when an object receives a message 
+![an-image](https://user-images.githubusercontent.com/1684221/148937891-c2b44f80-7053-4dc3-a70e-ab07c60b0f16.png)
 
-### Use-cases
-
-The typical use-case for this object-centric breakpoint is when you have many instances of the same class running in your program, while you are interested to debug a method for one specific object among these instances. You are interested to answer the following question: _When is this particular object executing this particular method during the execution?_ 
-
-### Exercise 1
-
-The `OCDBoxTest>>#testMultipleBoxes` test iterates over a hundred boxes objects, and to each object it sends the  `#addElement:` message. In this exercise, we select one box object among all the iterated boxes, and we install an object-centric breakpoint on the `OCDBox>>#addElement:` method of that object. Then, we proceed the test and the  the  `#addElement:` message is sent to each of the boxes. The execution only stops when the selected box executes the `OCDBox>>#addElement:` method.
-
-**Step 1: getting to the object to debug**
-Let us say that we want to debug the tenth box in the box collection.
-The first step of object-centric debugging is to obtain this box object.
-To do that, we first have to interrupt our execution and find the object in the debugger:
-* Go to `OCDBoxTest>>#testMultipleBoxes` (click on it)
-* Add a `self halt.` instruction just after the first `100 timesRepeat` loop
-* Execute the test: the debugger opens on your halt
-* Select the `Boxes` variable into the bottom inspector
-* Select the object at index 10: you got the object to debug!
-
-**Step 2: installing an object-centric breakpoint on our object**
-In the meta inspection pane of the object you just selected, find the method  `OCDBox>>#addElement:`.
-* Right-click on that method, and select _halt on call_ in the menu
-* Proceed the execution in the debugger
-
-The test continues and  iterates over the hundred boxes, and sends the addElement: message to each box object.
-Only the box number 10 that you instrumented breaks when executing this method!
-
-## Tutorial: Breaking when the state of a specific object is touched
-
-### Use-cases
-
-The typical use-case for this object-centric breakpoint is when you have many instances of the same class running in your program, while you are interested to know when the state of one specific object is modified. You are interested to answer the following question: _When is the state of this particular object modified during the execution?_
-
-### Exercise 2
-
-In this exercise, we reuse our test iterating over a hundred box objects. We select again a box among all the iterated boxes, but this time we want to stop when the `name` instance variable of that box is written to. To that end, we install an object-centric breakpoint on all write accesses to that variable in the selected object. Then, we proceed the test and the execution only breaks when the name instance variable of the selected box is modified.
-
-**Step 1: getting to the object to debug**
-Perform again the instructions from **Step 1** of **Exercise 1**.
-
-**Step 1: getting to the object to debug**
-In the raw pane of the inspector opened on your box object:
-* Select the name instance variable in the table
-* Right-click on that  item, and select `halt on write` in the menu
-* Proceed the execution in the debugger
-
-The test continues and iterates over the hundred boxes.
-The execution breaks only when the box object we instrumented writes into its `name` instance variable. All other objects are not affected by the breakpoint.
-
-## Removing and disabling breakpoints 
-Breakpoints can be definitely removed, or temporary disabled.
-
-**From the breakpoint navigator**
-The breakpoint navigator gives us views and control over breakpoints installed in the system, such as visualizing where breakpoints are located in the source code and disabling/enabling them dynamically.
-
-The navigator is accessible through Pharo main menu:
-
-![breakpoint-nav](https://github.com/StevenCostiou/Pharo-VariableBreakpoint-Tutorial/raw/main/pictures/breakpoint-bnav-menu.png)
-
-In this navigator, you see the following elements: 
-1. The list of installed breakpoints in the system 
-2. The list of methods affected by the selected breakpoint
-3. The source code of the selected affected method, with the breakpoint locations highlighted
-
-To enable or disable a breakpoint, just tick and untick the checkbox of the breakpoint.
-Disabling a breakpoint does not uninstall it, but it stops having any effect.
-Disabling and enabling breakpoints can be done dynamically at any point when your program is running.
-
-To remove a breakpoint, just right click on the breakpoint line and select _remove_.
-
-When you select a breakpoint, you see the list of methods affected by that breakpoint.
-When you select one of these methods, you see the source code of that method with, highlighted, all the locations in the source code where (or when!) the breakpoint will interrupt the execution.
-
-![breakpoint-nav-menu](https://github.com/StevenCostiou/Pharo-VariableBreakpoint-Tutorial/raw/main/pictures/breakpoint-navigator.png)
-
-**From the inspector**
-Removing a breakpoint from the inspector is straightforward.
-Just inspect the object on which you installed a breakpoint. 
-Go into the breakpoint pane: you can control breakpoints from there in the same manner as in the breakpoint navigator.
-
-### Exercise 3
-Do again exercise 1 and 2, but this time experiment breakpoint enabling/disabling and uninstalling through the breakpoint navigator and through the breakpoint pane when you inspect objects.
+**This is italic text style**
+**This is bold text style**
+***This is bold italic text style***
 
 '
 ]
