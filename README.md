@@ -1,7 +1,9 @@
 # experiment-n
 
-Baseline for participants: Load the experiment and starts it immediately:
+## Baselines
 
+### Baseline for participants
+Load the experiment and starts it immediately.
 ```Smalltalk
 Metacello new
 	baseline: 'Exp';
@@ -9,7 +11,9 @@ Metacello new
 	load.
 ```
 
-Baseline for working on the framework: Doesn't start the exeperiment. Loads the experiment framework without loading the scenarios.
+### Baseline for working on the Experiment framework
+Doesn't start the exeperiment.
+Just loads the experiment framework without loading the scenarios.
 
 ```Smalltalk
 Metacello new
