@@ -21,7 +21,7 @@ ExperimentLoggerDSSpy class >> on: anExperiment [
 
 { #category : #logging }
 ExperimentLoggerDSSpy >> authorizeDataSending [
-	DSSpy logger authorizeDataSending 
+	"DSSpy logger authorizeDataSending "
 ]
 
 { #category : #logging }
