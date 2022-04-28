@@ -12,7 +12,7 @@ Metacello new
 ```
 
 ### Baseline for working on the Experiment framework
-Doesn't start the exeperiment.
+Doesn't start the experiment.
 Just loads the experiment framework without loading the scenarios.
 
 ```Smalltalk
