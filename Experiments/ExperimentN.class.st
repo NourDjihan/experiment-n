@@ -110,15 +110,6 @@ ExperimentN class >> buildExperiment [
 	postTaskSurvey := self buildPostTaskSurvey.
 	surveys add: postTaskSurvey.
 	tasks last survey: postTaskSurvey uuid.
-
-	"10 atRandom < 6 ifTrue: [ 
-		| firstTask lastTask |
-		firstTask := tasks removeFirst.
-		lastTask := tasks removeLast.
-		firstTask order: lastTask order.
-		lastTask order: 1.
-		tasks addFirst: lastTask.
-		tasks addLast: firstTask ]."
 	
 	xp := self basicNew.
 	xp tasks: tasks.
@@ -168,7 +159,7 @@ Do you agree with or Data Policy Content? *If you do not agree, please leave the
 '.
 	
 	question := PhexAgreementQuestion new
-		  title: textStream contents;
+		  title: contents;
 		  yourself.
 	survey := PhexSurvey agreementSurvey.
 	survey title: 'Experiment introduction and data policy.'.
