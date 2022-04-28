@@ -421,9 +421,8 @@ ExperimentN class >> startIt [
 
 { #category : #'building - sources' }
 ExperimentN class >> task1Source [
-^'# Task 1
-Microdown description of the task here
-'
+^ 'Import the model into the Moose inspector'
+
 ]
 
 { #category : #'building - sources' }
