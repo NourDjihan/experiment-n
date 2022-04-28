@@ -9,9 +9,6 @@ Class {
 		'validator',
 		'participantUUID'
 	],
-	#classVars : [
-		'DevelopmentMode'
-	],
 	#category : #'Experiments-ExpN'
 }
 
@@ -114,14 +111,14 @@ ExperimentN class >> buildExperiment [
 	surveys add: postTaskSurvey.
 	tasks last survey: postTaskSurvey uuid.
 
-	10 atRandom < 6 ifTrue: [ 
+	"10 atRandom < 6 ifTrue: [ 
 		| firstTask lastTask |
 		firstTask := tasks removeFirst.
 		lastTask := tasks removeLast.
 		firstTask order: lastTask order.
 		lastTask order: 1.
 		tasks addFirst: lastTask.
-		tasks addLast: firstTask ].
+		tasks addLast: firstTask ]."
 	
 	xp := self basicNew.
 	xp tasks: tasks.
@@ -137,7 +134,7 @@ ExperimentN class >> buildExperimentSurveys [
 
 	| svs |
 	svs := OrderedCollection new.
-	"svs add: self buildIntroSurvey."
+	svs add: self buildIntroSurvey.
 	svs add: self buildDemographicSurvey.
 	svs add: self buildPostExperimentSurvey.
 	svs add: self buildContactAndCommentSurvey.
@@ -146,39 +143,29 @@ ExperimentN class >> buildExperimentSurveys [
 
 { #category : #building }
 ExperimentN class >> buildIntroSurvey [
-	|textStream question survey |
-	textStream := WriteStream on: String new.
-	textStream << 'Dear Participant,'.
-	textStream cr.
-	textStream << 'We are researchers investigating on Exp-N. We would be grateful if you could help our research and participate in our experiment on this subject.'.
-	textStream cr.
-	textStream cr.
-	textStream << 'In this experiment:'.
-	textStream cr.
-	textStream << '- We analyze developers applying X in different circumstances,'.
-	textStream cr.
-	textStream << '- we collect and store anonymized data from you during the experiment.'.
-	textStream cr.
-	textStream cr.
-	textStream << 'The experiment will require around 40 minutes to be completed.'.
-	textStream cr.
-	textStream cr.
+	|textStream question survey contents|
+	contents := 'Dear Participant,
+	
+We are researchers investigating on Exp-N. We would be grateful if you could help our research and participate in our experiment on this subject.
 
-	textStream << 'To proceed, please carefully read and agree to the following data handling policy:'.
-	textStream cr.
-	textStream cr.
-	textStream << 'In this experiment, we ask you some demographic data such as your level of education and your experience as a developer. None of these questions will be mandatory and we will not ask any further sensitive information. Please do not to share personal and/or sensitive information in the open questions you will find in the experiment. In such a case, we will remove your answer from the final dataset.'.
-	textStream cr.
-	textStream cr.
-	textStream <<		
-		'Your answers are anonymized to the best of our capabilities, moreover the IP address from which you complete the experiment is not saved. You can withdraw from the experiment at any moment by quitting the experimental environment; any uncomplete data will be removed. All the data are used for research purposes only; the data will not be sold or shared to third parties.'.
+In this experiment:
 
-	textStream cr.
-	textStream cr.
-	textStream <<'The data handling and storing is under the responsibility of X, Inria Lille - Nord Europe, contact: X@X.X
-	The data analysis is under the responsibility of X, X, contact: X'.
-	textStream cr.
-	textStream << 'Do you agree with or Data Policy Content? *If you do not agree, please leave the experiment*'.
+- We analyze developers applying X in different circumstances,
+- we collect and store anonymized data from you during the experiment.
+
+The experiment will require around 40 minutes to be completed.
+
+To proceed, please carefully read and agree to the following data handling policy:
+
+In this experiment, we ask you some demographic data such as your level of education and your experience as a developer. None of these questions will be mandatory and we will not ask any further sensitive information. Please do not to share personal and/or sensitive information in the open questions you will find in the experiment. In such a case, we will remove your answer from the final dataset.
+		
+Your answers are anonymized to the best of our capabilities, moreover the IP address from which you complete the experiment is not saved. You can withdraw from the experiment at any moment by quitting the experimental environment; any uncomplete data will be removed. All the data are used for research purposes only; the data will not be sold or shared to third parties.
+	
+The data handling and storing is under the responsibility of X, Inria Lille - Nord Europe, contact: X@X.X
+The data analysis is under the responsibility of X, X, contact: X
+	
+Do you agree with or Data Policy Content? *If you do not agree, please leave the experiment*
+'.
 	
 	question := PhexAgreementQuestion new
 		  title: textStream contents;
@@ -425,21 +412,8 @@ ExperimentN class >> buildTasks [
 ]
 
 { #category : #initialization }
-ExperimentN class >> developmentMode [
-
-	^ DevelopmentMode
-]
-
-{ #category : #initialization }
-ExperimentN class >> developmentMode: anObject [
-
-	DevelopmentMode := anObject
-]
-
-{ #category : #initialization }
 ExperimentN class >> initialize [
 
-	DevelopmentMode := false
 ]
 
 { #category : #'as yet unclassified' }
